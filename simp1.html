@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta name="theme-color" content="#343a40">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--for ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <!--...-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+  <style>
+  #nav{
+    background-color:black; 
+    margin-bottom:4%; 
+  }
+  #footer{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background-color:black;
+    height: 40px;
+    
+}
+  @media screen and (max-width: 1000px){
+    #nav{
+      margin-bottom: 20%;
+    }
+  #main-div{
+    min-height:70%;
+  }
+}
+  #header{
+    font-family: 'Permanent Marker', cursive;
+      margin-bottom:10%;
+  }
+   #main-div{
+    min-height:60%;
+  }
+  input [type=text]{
+  z-index: 0;
+}
+#copy{
+  color:white;
+  float:left;
+  padding-left:20px; 
+}
+#create{
+  float:right;
+  padding-right:20px; 
+}
+#result{
+	display: none;
+}
+#resultData{
+	display: none;
+}
+#showData{
+	display: none;
+}
+
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark" id="nav">
+
+      <a class="navbar-brand" href="#"><img src="assets/logo.png" width="190px" height="40px">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item-active">
+             <button class="btn btn-outline-light m-2 my-sm-0" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-info-circle"></i>&nbsp;About</button>
+             <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">SMART URL</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <strong>URL shortener</strong> is a technique on the World Wide Web in which a Uniform Resource Locator (URL) may be made substantially shorter and still direct to the required page. This is achieved by using a redirect which links to the web page that has a long URL. For example, the URL "http://example.com/assets/category_B/subcategory_C/Foo/" can be shortened to "https://example.com/Foo", and the URL "http://example.com/about/index.html" can be shortened to "https://goo.gl/aO3Ssc". 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+         </li>
+     </ul>
+</div>  
+  </nav>
+  <div class="row no-gutters" id="main-div">
+      
+      <div class="col-3"></div>
+      <div class="col-md-6">
+        <h1 class="text-center" id="header">Shorten your URL</h1>
+        <!-- Form -->
+      <div class="container">
+        <form id="shorturl">
+            <div class="input-group">
+              <div class="input-group-prepend">
+               <div class="input-group-text"><i class="fas fa-link"></i></div>
+              </div>
+              <input type="text" name="url" class="form-control" id="url" placeholder="URL(must starts with http:// or https://)"value="" autofocus>
+              <div class="input-group-append">
+              <button type="submit" class="btn btn-success" id="button"><i class="fas fa-link"></i> &nbsp;Shorten</button>
+            </div>
+          </div>
+          <span id="valid" aria-hidden="true"></span>
+           <br><br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">https://smarturl.herokuapp.com/</div>
+              </div>
+              <input type="text" name="key" class="form-control" id="key" placeholder="(Optional) Your custom URL" value="">
+            </div>
+          <span id="check" aria-hidden="true"></span>
+
+          <br>
+          </form>
+        <div id="result">
+        	<div class="alert alert-primary" role="alert">Alas! Here is your short url</div>
+        </div>
+        <div id="resultData">
+        	<div class="alert alert-dark" role="alert" data-toggle="tooltip" data-placement="bottom" title="Click to copy"><div id="showData">http://smarturl.herokuapp.com/<span id="link"></span></div></div>
+        	
+           </div>
+      <div class="col-3">
+    </div>
+    <!-- Footer -->
+    <div class="row no-gutters" id="footer">
+      <div class="col-md-12 text-center">
+          <span id="copy">&copy; 2018,smart URL</span> 
+          <span id="create">A URL Shortner by:AARTI VERMA :)
+        </span></div>
+    </div>
+   </div>
+   <script src="init.js"></script>
+</body>
+</html>
